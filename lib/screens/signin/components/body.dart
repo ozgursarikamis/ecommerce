@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/constants.dart';
+import 'package:shop_app/components/CustomSuffixIcon.dart';
 import 'package:shop_app/size_config.dart';
 
 class Body extends StatelessWidget {
@@ -50,19 +50,10 @@ class _SignFormState extends State<SignForm> {
         children: [
           TextFormField(
             decoration: InputDecoration(
-                hintText: "Enter your email",
                 labelText: "Email",
+                hintText: "Enter your email...",
                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 42, vertical: 20),
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(28),
-                    borderSide: BorderSide(color: kTextColor),
-                    gapPadding: 10),
-                focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(28),
-                    borderSide: BorderSide(color: kTextColor),
-                    gapPadding: 10)),
+                suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/Mail.svg")),
           )
         ],
       ),
