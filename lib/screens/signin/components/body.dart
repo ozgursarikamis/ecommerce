@@ -49,6 +49,7 @@ class _SignFormState extends State<SignForm> {
       child: Column(
         children: [
           TextFormField(
+            keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
                 labelText: "Email",
                 hintText: "Enter your email...",
