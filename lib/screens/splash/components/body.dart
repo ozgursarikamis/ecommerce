@@ -10,6 +10,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  int currentPage = 0;
   List<Map<String, String>> splashData = [
     {
       "text": "Welcome to Tokoto, Let’s shop!",
@@ -37,6 +38,11 @@ class _BodyState extends State<Body> {
               // Creates a scrollable list that works page by page
               // using widgets that are created on demand.
               child: PageView.builder(
+                  onPageChanged: (value) {
+                    setState(() {
+                      currentPage = value;
+                    });
+                  },
                   itemCount: splashData.length,
                   itemBuilder: (context, index) => SplashContent(
                       image: splashData[index]["image"],
@@ -46,19 +52,28 @@ class _BodyState extends State<Body> {
               flex: 2,
               child: Column(
                 children: <Widget>[
-                  Container(
-                    height: 6, width: 6,
-                    decoration: BoxDecoration(
-                      color: kPrimaryColor,
-                      borderRadius: BorderRadius.circular(3)
-                      ),
-                  )
+                  Row(
+                    children: List.generate(
+                        splashData.length, (index) => buildDot(index: index)),
+                  ),
                 ],
               ),
             )
           ],
         ),
       ),
+    );
+  }
+
+  AnimatedContainer buildDot({int index}) {
+    return AnimatedContainer(
+      margin: EdgeInsets.only(right: 5),
+      width: currentPage == index ? 20 : 6,
+      height: 6,
+      decoration: BoxDecoration(
+          color: currentPage == index ? kPrimaryColor : Color(0xFFD8D8D8),
+          borderRadius: BorderRadius.circular(3)),
+      duration: kAnimationDuration,
     );
   }
 }
