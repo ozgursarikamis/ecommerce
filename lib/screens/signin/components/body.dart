@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/components/CustomSuffixIcon.dart';
+import 'package:shop_app/components/DefaultButton.dart';
 import 'package:shop_app/size_config.dart';
 
 class Body extends StatelessWidget {
@@ -48,16 +49,38 @@ class _SignFormState extends State<SignForm> {
     return Form(
       child: Column(
         children: [
-          TextFormField(
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(
-                labelText: "Email",
-                hintText: "Enter your email...",
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/Mail.svg")),
+          buildEmailFormField(),
+          SizedBox(height: getProportionateScreenHeight(20)),
+          buildPasswordFormField(),
+          SizedBox(height: getProportionateScreenHeight(20)),
+          DefaultButton(
+            text: "Sign in",
+            press: () {},
           )
         ],
       ),
+    );
+  }
+
+  TextFormField buildPasswordFormField() {
+    return TextFormField(
+      obscureText: true,
+      decoration: InputDecoration(
+          labelText: "Password",
+          hintText: "Enter your password...",
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/Lock.svg")),
+    );
+  }
+
+  TextFormField buildEmailFormField() {
+    return TextFormField(
+      keyboardType: TextInputType.emailAddress,
+      decoration: InputDecoration(
+          labelText: "Email",
+          hintText: "Enter your email...",
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/Mail.svg")),
     );
   }
 }
