@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../constants.dart';
+import 'package:shop_app/components/DefaultButton.dart';
 import 'splash_content.dart';
+import '../../../constants.dart';
+import '../../../size_config.dart';
 
 class Body extends StatefulWidget {
   Body({Key key}) : super(key: key);
@@ -50,14 +52,22 @@ class _BodyState extends State<Body> {
             ),
             Expanded(
               flex: 2,
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                        splashData.length, (index) => buildDot(index: index)),
-                  ),
-                ],
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: getProportionateScreenWidth(20)),
+                child: Column(
+                  children: <Widget>[
+                    Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                          splashData.length, (index) => buildDot(index: index)),
+                    ),
+                    Spacer(flex: 3),
+                    DefaultButton(press: () {}, text: 'Continue'),
+                    Spacer(),
+                  ],
+                ),
               ),
             )
           ],
