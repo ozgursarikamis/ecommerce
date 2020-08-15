@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'components/body.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key key}) : super(key: key);
@@ -11,7 +12,7 @@ class SignInScreen extends StatelessWidget {
           title: Text(
         "Sign in...",
       )),
-      // body: Body(),
+      body: Body(),
     );
   }
 }
