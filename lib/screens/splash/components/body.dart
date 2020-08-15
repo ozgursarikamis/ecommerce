@@ -11,6 +11,21 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  List<Map<String, String>> splashData = [
+    {
+      "text": "Welcome to Tokoto, Let’s shop!",
+      "image": "assets/images/splash_1.png"
+    },
+    {
+      "text":
+          "We help people conect with store \naround United State of America",
+      "image": "assets/images/splash_2.png"
+    },
+    {
+      "text": "We show the easy way to shop. \nJust stay at home with us",
+      "image": "assets/images/splash_3.png"
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,12 +35,13 @@ class _BodyState extends State<Body> {
           children: <Widget>[
             Expanded(
               flex: 3,
-              // Creates a scrollable list that works page by page 
+              // Creates a scrollable list that works page by page
               // using widgets that are created on demand.
-              child: PageView.builder(itemBuilder: (context, index) => SplashContent(
-                image: "assets/images/splash_1.png",
-                text: "Welcome to Tokoto, Let's shop!"
-              )),
+              child: PageView.builder(
+                  itemCount: splashData.length,
+                  itemBuilder: (context, index) => SplashContent(
+                      image: splashData[index]["image"],
+                      text: splashData[index]["text"])),
             ),
             Expanded(
               flex: 2,
@@ -39,9 +55,7 @@ class _BodyState extends State<Body> {
 }
 
 class SplashContent extends StatelessWidget {
-  const SplashContent({
-    Key key, this.text, this.image
-  }) : super(key: key);
+  const SplashContent({Key key, this.text, this.image}) : super(key: key);
 
   final String text, image;
 
