@@ -1,7 +1,7 @@
+import 'package:ecommerce/components/NoAccountRow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ecommerce/size_config.dart';
-import 'package:ecommerce/constants.dart';
 import 'package:ecommerce/screens/signin/components/signin.form.dart';
 
 class Body extends StatelessWidget {
@@ -35,24 +35,12 @@ class Body extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SocialCard(icon: "assets/icons/facebook-2.svg", press: () {}),
-                  SocialCard(
-                      icon: "assets/icons/google-icon.svg", press: () {}),
+                  SocialCard(icon: "assets/icons/google-icon.svg", press: () {}),
                   SocialCard(icon: "assets/icons/twitter.svg", press: () {}),
                 ],
               ),
               SizedBox(height: getProportionateScreenHeight(20)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Don't have an account ?",
-                      style:
-                          TextStyle(fontSize: getProportionateScreenWidth(16))),
-                  Text("Sign up",
-                      style: TextStyle(
-                          fontSize: getProportionateScreenWidth(16),
-                          color: kPrimaryColor))
-                ],
-              )
+              NoAccountRow()
             ],
           ),
         ),

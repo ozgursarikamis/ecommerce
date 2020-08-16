@@ -1,4 +1,4 @@
-
+import 'package:ecommerce/screens/forgot.password/forgot.password.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/components/FormError.dart';
 import 'package:ecommerce/constants.dart';
@@ -35,14 +35,24 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(30)),
           Row(
             children: [
-              Checkbox(value: rememberMe, activeColor: kPrimaryColor, onChanged: (value){ 
-                setState(() {
-                  rememberMe = value;
-                });
-              }),
+              Checkbox(
+                  value: rememberMe,
+                  activeColor: kPrimaryColor,
+                  onChanged: (value) {
+                    setState(() {
+                      rememberMe = value;
+                    });
+                  }),
               Text("Remember Me"),
               Spacer(),
-              Text("Forgot Password", style: TextStyle(decoration: TextDecoration.underline))
+              GestureDetector(
+                onTap: () => Navigator.popAndPushNamed(
+                    context, ForgotPasswordScreen.routeName),
+                child: Text("Forgot Password",
+                    style: TextStyle(
+                        fontSize: getProportionateScreenWidth(12),
+                        color: kPrimaryColor)),
+              )
             ],
           ),
           DefaultButton(
