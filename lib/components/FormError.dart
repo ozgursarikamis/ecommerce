@@ -13,9 +13,12 @@ class FormError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        children: List.generate(
-            errors.length, (index) => formErrorText(error: errors[index])));
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Column(
+          children: List.generate(
+              errors.length, (index) => formErrorText(error: errors[index]))),
+    );
   }
 
   Row formErrorText({String error}) {
