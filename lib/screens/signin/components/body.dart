@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/components/CustomSuffixIcon.dart';
-import 'package:shop_app/components/DefaultButton.dart';
-import 'package:shop_app/components/FormError.dart';
-import 'package:shop_app/constants.dart';
-import 'package:shop_app/size_config.dart';
+import 'package:ecommerce/components/CustomSuffixIcon.dart';
+import 'package:ecommerce/components/DefaultButton.dart';
+import 'package:ecommerce/components/FormError.dart';
+import 'package:ecommerce/constants.dart';
+import 'package:ecommerce/size_config.dart'; 
 
 class Body extends StatelessWidget {
   const Body({Key key}) : super(key: key);
@@ -50,6 +50,7 @@ class _SignFormState extends State<SignForm> {
 
   final List<String> errors = [];
   final _formKey = GlobalKey<FormState>();
+  bool rememberMe = false;
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +65,18 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(20)),
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(20)),
+          Row(
+            children: [
+              Checkbox(value: rememberMe, activeColor: kPrimaryColor, onChanged: (value){ 
+                setState(() {
+                  rememberMe = value;
+                });
+              }),
+              Text("Remember Me"),
+              Spacer(),
+              Text("Forgot Password", style: TextStyle(decoration: TextDecoration.underline))
+            ],
+          ),
           DefaultButton(
             text: "Sign in",
             press: () {
