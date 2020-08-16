@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/components/CustomSuffixIcon.dart';
 import 'package:shop_app/components/DefaultButton.dart';
+import 'package:shop_app/components/FormError.dart';
+import 'package:shop_app/constants.dart';
 import 'package:shop_app/size_config.dart';
 
 class Body extends StatelessWidget {
@@ -44,18 +46,27 @@ class SignForm extends StatefulWidget {
 }
 
 class _SignFormState extends State<SignForm> {
+  final List<String> errors = [];
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Column(
         children: [
           buildEmailFormField(),
           SizedBox(height: getProportionateScreenHeight(20)),
           buildPasswordFormField(),
           SizedBox(height: getProportionateScreenHeight(20)),
+          FormError(errors: errors),
           DefaultButton(
             text: "Sign in",
-            press: () {},
+            press: () {
+              if (_formKey.currentState.validate()) {
+                _formKey.currentState.save();
+              }
+            },
           )
         ],
       ),
@@ -75,6 +86,35 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildEmailFormField() {
     return TextFormField(
+      // onSaved: (newValue) => email = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty && errors.contains(kEmailNullError)) {
+          setState(() {
+            errors.remove(kEmailNullError);
+          });
+        } else if (emailValidatorRegExp.hasMatch(value) &&
+            errors.contains(kInvalidEmailError)) {
+          setState(() {
+            errors.remove(kInvalidEmailError);
+          });
+        }
+        return null;
+      },
+      validator: (value) {
+        if (value.isEmpty && !errors.contains(kEmailNullError)) {
+          setState(() {
+            errors.add(kEmailNullError);
+          });
+          return "";
+        } else if (!emailValidatorRegExp.hasMatch(value) &&
+            !errors.contains(kInvalidEmailError)) {
+          setState(() {
+            errors.add(kInvalidEmailError);
+          });
+          return "";
+        }
+        return null;
+      },
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
           labelText: "Email",
