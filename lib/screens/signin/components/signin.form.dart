@@ -1,4 +1,5 @@
 import 'package:ecommerce/screens/forgot.password/forgot.password.dart';
+import 'package:ecommerce/screens/login.success/login.success.screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/components/FormError.dart';
 import 'package:ecommerce/constants.dart';
@@ -19,6 +20,20 @@ class _SignFormState extends State<SignForm> {
   final List<String> errors = [];
   final _formKey = GlobalKey<FormState>();
   bool rememberMe = false;
+
+  void addError({String error}) {
+    if (!errors.contains(error))
+      setState(() {
+        errors.add(error);
+      });
+  }
+
+  void removeError({String error}) {
+    if (errors.contains(error))
+      setState(() {
+        errors.remove(error);
+      });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +75,8 @@ class _SignFormState extends State<SignForm> {
             press: () {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
+                // if all are valid then go to success screen
+                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
             },
           )
@@ -75,28 +92,19 @@ class _SignFormState extends State<SignForm> {
         password = newValue;
       },
       onChanged: (value) {
-        if (value.isNotEmpty && errors.contains(kPassNullError)) {
-          setState(() {
-            errors.remove(kPassNullError);
-          });
-        } else if (value.length >= 8 && errors.contains(kShortPassError)) {
-          setState(() {
-            errors.remove(kShortPassError);
-          });
-          return "";
+        if (value.isNotEmpty) {
+          removeError(error: kPassNullError);
+        } else if (value.length >= 8) {
+          removeError(error: kShortPassError);
         }
         return null;
       },
       validator: (value) {
-        if (value.isEmpty && !errors.contains(kPassNullError)) {
-          setState(() {
-            errors.add(kPassNullError);
-          });
+        if (value.isEmpty) {
+          addError(error: kPassNullError);
           return "";
-        } else if (value.length < 8 && !errors.contains(kShortPassError)) {
-          setState(() {
-            errors.add(kShortPassError);
-          });
+        } else if (value.length < 8) {
+          addError(error: kShortPassError);
           return "";
         }
         return null;
@@ -112,30 +120,20 @@ class _SignFormState extends State<SignForm> {
   TextFormField buildEmailFormField() {
     return TextFormField(
       onSaved: (newValue) => email = newValue,
-      onChanged: (value) {
-        if (value.isNotEmpty && errors.contains(kEmailNullError)) {
-          setState(() {
-            errors.remove(kEmailNullError);
-          });
-        } else if (emailValidatorRegExp.hasMatch(value) &&
-            errors.contains(kInvalidEmailError)) {
-          setState(() {
-            errors.remove(kInvalidEmailError);
-          });
+     onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kEmailNullError);
+        } else if (emailValidatorRegExp.hasMatch(value)) {
+          removeError(error: kInvalidEmailError);
         }
         return null;
       },
       validator: (value) {
-        if (value.isEmpty && !errors.contains(kEmailNullError)) {
-          setState(() {
-            errors.add(kEmailNullError);
-          });
+        if (value.isEmpty) {
+          addError(error: kEmailNullError);
           return "";
-        } else if (!emailValidatorRegExp.hasMatch(value) &&
-            !errors.contains(kInvalidEmailError)) {
-          setState(() {
-            errors.add(kInvalidEmailError);
-          });
+        } else if (!emailValidatorRegExp.hasMatch(value)) {
+          addError(error: kInvalidEmailError);
           return "";
         }
         return null;

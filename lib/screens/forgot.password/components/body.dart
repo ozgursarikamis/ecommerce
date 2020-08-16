@@ -1,4 +1,3 @@
-import 'package:ecommerce/components/NoAccountRow.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/components/FormError.dart';
 import 'package:ecommerce/components/DefaultButton.dart';
@@ -105,8 +104,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
               }
             },
           ),
-          SizedBox(height: SizeConfig.screenHeight * 0.1),
-          NoAccountRow(),
+          SizedBox(height: SizeConfig.screenHeight * 0.1)
         ],
       ),
     );
