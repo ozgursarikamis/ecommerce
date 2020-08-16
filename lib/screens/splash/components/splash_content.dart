@@ -14,7 +14,7 @@ class SplashContent extends StatelessWidget {
     return Column(
       children: <Widget>[
         Spacer(),
-        Text("TOKOTO",
+        Text("ecommerce",
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontSize: getProportionateScreenWidth(36),

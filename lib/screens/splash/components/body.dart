@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/components/DefaultButton.dart';
-import 'package:shop_app/screens/signin/signin.dart';
+import 'package:ecommerce/components/DefaultButton.dart';
+import 'package:ecommerce/screens/signin/signin.dart';
 import 'splash_content.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -16,7 +16,7 @@ class _BodyState extends State<Body> {
   int currentPage = 0;
   List<Map<String, String>> splashData = [
     {
-      "text": "Welcome to Tokoto, Let’s shop!",
+      "text": "Welcome to ecommerce, Let’s shop!",
       "image": "assets/images/splash_1.png"
     },
     {
