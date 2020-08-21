@@ -1,5 +1,4 @@
-
-import 'package:ecommerce/screens/forgot.password/forgot.password.dart';
+import 'package:ecommerce/screens/signup/signup.screen.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import '../size_config.dart';
@@ -14,13 +13,13 @@ class NoAccountRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("Don't have an account ?", style: TextStyle(fontSize: getProportionateScreenWidth(16))),
+        Text("Don't have an account ?",
+            style: TextStyle(fontSize: getPPSWidth(16))),
         GestureDetector(
-          onTap: () => Navigator.popAndPushNamed(
-              context, ForgotPasswordScreen.routeName),
-          child: Text("Sign up", style: TextStyle(
-                  fontSize: getProportionateScreenWidth(16),
-                  color: kPrimaryColor)),
+          onTap: () => Navigator.pushNamed(context, SignupScreen.routeName),
+          child: Text("Sign up",
+              style:
+                  TextStyle(fontSize: getPPSWidth(16), color: kPrimaryColor)),
         )
       ],
     );

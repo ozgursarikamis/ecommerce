@@ -41,13 +41,13 @@ class _SignFormState extends State<SignForm> {
       key: _formKey,
       child: Column(
         children: [
-          SizedBox(height: getProportionateScreenHeight(30)),
+          SizedBox(height: getPPSHeight(30)),
           buildEmailFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
+          SizedBox(height: getPPSHeight(30)),
           buildPasswordFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
+          SizedBox(height: getPPSHeight(30)),
           FormError(errors: errors),
-          SizedBox(height: getProportionateScreenHeight(30)),
+          SizedBox(height: getPPSHeight(30)),
           Row(
             children: [
               Checkbox(
@@ -65,8 +65,7 @@ class _SignFormState extends State<SignForm> {
                     context, ForgotPasswordScreen.routeName),
                 child: Text("Forgot Password",
                     style: TextStyle(
-                        fontSize: getProportionateScreenWidth(12),
-                        color: kPrimaryColor)),
+                        fontSize: getPPSWidth(12), color: kPrimaryColor)),
               )
             ],
           ),
@@ -120,7 +119,7 @@ class _SignFormState extends State<SignForm> {
   TextFormField buildEmailFormField() {
     return TextFormField(
       onSaved: (newValue) => email = newValue,
-     onChanged: (value) {
+      onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kEmailNullError);
         } else if (emailValidatorRegExp.hasMatch(value)) {

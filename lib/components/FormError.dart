@@ -26,8 +26,8 @@ class FormError extends StatelessWidget {
       children: [
         SvgPicture.asset("assets/icons/Error.svg"),
         SizedBox(
-          width: getProportionateScreenWidth(14),
-          height: getProportionateScreenHeight(14),
+          width: getPPSWidth(14),
+          height: getPPSHeight(14),
         ),
         Text(error)
       ],

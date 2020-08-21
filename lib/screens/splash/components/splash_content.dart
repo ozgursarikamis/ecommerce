@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
@@ -17,15 +16,16 @@ class SplashContent extends StatelessWidget {
         Text("ecommerce",
             textAlign: TextAlign.center,
             style: TextStyle(
-                fontSize: getProportionateScreenWidth(36),
+                fontSize: getPPSWidth(36),
                 color: kPrimaryColor,
                 fontWeight: FontWeight.bold)),
         Text(text),
         Spacer(),
         Image.asset(
           image,
-          height: getProportionateScreenHeight(265),
-          width: getProportionateScreenWidth(235),
+          height: getPPSHeight(265),
+          width: getPPSWidth(235),
+          // )
         )
       ],
     );

@@ -13,15 +13,14 @@ class Body extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         child: Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          padding: EdgeInsets.symmetric(horizontal: getPPSWidth(20)),
           child: Column(
             children: [
               Text(
                 "Welcome Back",
                 style: TextStyle(
                     color: Colors.black,
-                    fontSize: getProportionateScreenWidth(28),
+                    fontSize: getPPSWidth(28),
                     fontWeight: FontWeight.bold),
               ),
               Text(
@@ -35,11 +34,12 @@ class Body extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SocialCard(icon: "assets/icons/facebook-2.svg", press: () {}),
-                  SocialCard(icon: "assets/icons/google-icon.svg", press: () {}),
+                  SocialCard(
+                      icon: "assets/icons/google-icon.svg", press: () {}),
                   SocialCard(icon: "assets/icons/twitter.svg", press: () {}),
                 ],
               ),
-              SizedBox(height: getProportionateScreenHeight(20)),
+              SizedBox(height: getPPSHeight(20)),
               NoAccountRow()
             ],
           ),
@@ -64,9 +64,9 @@ class SocialCard extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: Container(
-          padding: EdgeInsets.all(getProportionateScreenWidth(12)),
-          height: getProportionateScreenHeight(40),
-          width: getProportionateScreenWidth(40),
+          padding: EdgeInsets.all(getPPSWidth(12)),
+          height: getPPSHeight(40),
+          width: getPPSWidth(40),
           decoration:
               BoxDecoration(color: Color(0xFFF5F6F9), shape: BoxShape.circle),
           child: SvgPicture.asset(icon)),
